@@ -7,9 +7,9 @@
 #include <iostream>
 #include <vector> 
 using namespace std; 
-const int msize = 10; 
+const int maxsize = 10; 
 
-vector <int> a[msize];
+vector <int> a[maxsize];
 
 void show(int k) 
 {
@@ -31,7 +31,7 @@ void show(int k)
     cout << "----------\n"; 
 }
 
-void solve(const int money[], int k, int size, int position)  
+void solve(const int money[], int k, int size, int positionCurrent)  
 {
     if(position == size) {
         show(k);
@@ -39,8 +39,8 @@ void solve(const int money[], int k, int size, int position)
     }
 
     for(int j = 1; j <= k; j++) {
-        a[j].push_back(money[position]);  
-        solve(money, k, size, position+1); 
+        a[j].push_back(money[positionCurrent]);  
+        solve(money, k, size, positionCurrent+1); 
         a[j].pop_back(); 
     }
 }
@@ -49,8 +49,10 @@ int main()
 {
     int k = 3; 
     int money[] = {3, 6, 15, 16, 21}; 
-
-    solve(money, k, sizeof(money) / sizeof (*money), 0); 
+    int positionCurrent = 0; 
+    int size = sizeof(money) / sizeof (*money); 
+    
+    solve(money, k, size, positionCurrent); 
 
     return 0; 
 }
