@@ -33,7 +33,7 @@ void show(int k)
 
 void solve(const int money[], int k, int size, int positionCurrent)  
 {
-    if(position == size) {
+    if(positionCurrent == size) {
         show(k);
         return; 
     }
