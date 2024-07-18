@@ -14,7 +14,7 @@ using namespace std;
 int main() 
 {
      
-    char a[] = {' ', ' ', 'A', 'c', ' ', ' ', '\0'};  // -> xóa ở vị trí 5 
+    char a[] = {' ', ' ', 'A', 'c', ' ', ' ', '\0'};     // -> xóa ở vị trí 5 
     // char a[] = {' ', ' ', ' ', '\0'};                 // -> xóa ở vị trí 1 
     // char a[] = {' ', ' ', 'a', 'b', '\0'};            // -> không cần xóa 
 
