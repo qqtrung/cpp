@@ -23,7 +23,7 @@ public:
     {
         static int k = 0;
         int h = 0;
-        std::cout << "ctor a, static " << k << ",int " << h;
+        std::cout << "ctor a,static " << k << ",int " << h;
         k++;
         h++;
         C::endlC();
@@ -285,14 +285,21 @@ struct Point
     int r;
     int c;
 
-    friend std::istream& operator>>(std::istream &in, Point &point)
+    /*friend std::istream& operator>>(std::istream &in, Point &point)
+    {
+        in >> point.r;
+        in >> point.c;
+        return in;
+    }*/
+
+    friend std::istream& operator>> (std::istream &in, Point &point)
     {
         in >> point.r;
         in >> point.c;
         return in;
     }
 
-    friend std::ostream& operator<<(std::ostream &out, Point &point)
+    friend std::ostream& operator<< (std::ostream &out, Point &point)
     {
         out << point.r << " ";
         out << point.c << "\n";
@@ -302,31 +309,52 @@ struct Point
 
 struct Super
 {
-    std::string name; 
-    
-    // ban chat la tra ve 1 con tro toi class istream de lay dau vao 
-    // cua nguoi dung 
-    
+    std::string name;
+
+    // ban chat la tra ve 1 con tro toi class istream de lay dau vao
+    // cua nguoi dung
+
     // noi chung duoi day ta co the thay dung lop istream de lay dau
-    // vao cua nguoi dung nhu the nao 
-    
-    friend std::istream& operator>>(std::istream &in, Super &super)
+    // vao cua nguoi dung nhu the nao
+
+    // chung ta co the hieu don gian istream& la kieu tra ve
+    // operator la ten cua ham
+    // dau vao la cac thu tren
+
+    // ta thuong khong the thay doi format cua ham nhap va xuat
+    // ly do cac ham nay da duoc viet san roi
+
+    friend std::istream& operator>> (std::istream &in, Super &super)
     {
-        std::cout << "Nhap sieu nhan: "; 
-        // in >> super.name; 
-        in.ignore(); 
-        getline(in, super.name); 
+        std::cout << "Nhap sieu nhan: ";
+        // in >> super.name;
+        in.ignore();
+        getline(in, super.name);
         return in;
     }
 
-    // cung giong nhu tren thoi 
-    friend std::ostream& operator<<(std::ostream &out, Super &super)
+    // cung giong nhu tren thoi
+    friend std::ostream& operator<< (std::ostream &out, Super &super)
     {
-        std::cout << "Sieu nhan cua ban ten la: "; 
+        std::cout << "Sieu nhan cua ban ten la: ";
         out << super.name << "\n";
         return out;
     }
-}; 
+};
+
+struct my_istream
+{ 
+    int a;
+    
+    void operator+(int x) {
+        std::cout << this << "\n";
+        a = 8484;
+    }
+
+    void operator<<(int x) {
+        std::cout << this << "\n";
+    }
+};
 
 
 int main()
@@ -417,6 +445,7 @@ int main()
     int q[] = {5, 3, 7, 8, 1, 4};
     int n = sizeof(q) / sizeof (*q);
     InsertSort /*<int>*/ (q, n);
+    std::cout << "Insertion sort: "; 
     for(int i = 0; i < n; i++)
     {
         std::cout << q[i] << " ";
@@ -427,9 +456,19 @@ int main()
     std::cin >> point;
     std::cout << point;
 
-    Super super; 
+    Super super;
     std::cin >> super;
-    std::cout << super << "\n"; 
+    std::cout << super << "\n";
+
+    /* Qua vi du nay ta co the thay ban chat phep toan tu trong cpp*/
+    my_istream mis;
+    int fin;
+    mis.operator+(fin);
+    mis + fin;
+    mis.operator<<(fin);
+    mis << fin;
+    std::cout << mis.a << "\n";
+
 
 }
 
