@@ -23,7 +23,7 @@ public:
     {
         static int k = 0;
         int h = 0;
-        std::cout << "ctor a,static " << k << ",int " << h;
+        std::cout << "ctor a, static " << k << ",int " << h;
         k++;
         h++;
         C::endlC();
@@ -262,22 +262,71 @@ T myMax(T a, T b)
     return (a > b) ? a : b;
 }
 
-template <typename T> 
+template <typename T>
 void InsertSort (T *a, int n)
 {
-    for(int i = 0; i < n; i++) 
+    for(int i = 0; i < n; i++)
     {
-        for(int j = 0; j < i; j++) 
+        for(int j = 0; j < i; j++)
         {
             if(a[i] < a[j])
             {
-                T tmp = a[i]; 
-                a[i] = a[j]; 
-                a[j] = tmp; 
+                T tmp = a[i];
+                a[i] = a[j];
+                a[j] = tmp;
             }
         }
     }
 }
+
+
+struct Point
+{
+    int r;
+    int c;
+
+    friend std::istream& operator>>(std::istream &in, Point &point)
+    {
+        in >> point.r;
+        in >> point.c;
+        return in;
+    }
+
+    friend std::ostream& operator<<(std::ostream &out, Point &point)
+    {
+        out << point.r << " ";
+        out << point.c << "\n";
+        return out;
+    }
+};
+
+struct Super
+{
+    std::string name; 
+    
+    // ban chat la tra ve 1 con tro toi class istream de lay dau vao 
+    // cua nguoi dung 
+    
+    // noi chung duoi day ta co the thay dung lop istream de lay dau
+    // vao cua nguoi dung nhu the nao 
+    
+    friend std::istream& operator>>(std::istream &in, Super &super)
+    {
+        std::cout << "Nhap sieu nhan: "; 
+        // in >> super.name; 
+        in.ignore(); 
+        getline(in, super.name); 
+        return in;
+    }
+
+    // cung giong nhu tren thoi 
+    friend std::ostream& operator<<(std::ostream &out, Super &super)
+    {
+        std::cout << "Sieu nhan cua ban ten la: "; 
+        out << super.name << "\n";
+        return out;
+    }
+}; 
 
 
 int main()
@@ -362,19 +411,26 @@ int main()
     std::cout << myMax(4, 5);
     std::cout << std::endl;
     std::cout << myMax('t', 'a');
-    std::cout << std::endl; 
-    std::cout << std::endl; 
-    
-    int q[] = {5, 3, 7, 8, 1, 4}; 
-    int n = sizeof(q) / sizeof (*q); 
-    InsertSort /*<int>*/ (q, n); 
-    for(int i = 0; i < n; i++) 
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    int q[] = {5, 3, 7, 8, 1, 4};
+    int n = sizeof(q) / sizeof (*q);
+    InsertSort /*<int>*/ (q, n);
+    for(int i = 0; i < n; i++)
     {
-        std::cout << q[i] << " "; 
+        std::cout << q[i] << " ";
     }
-    std::cout << std::endl; 
-    
-    
+    std::cout << std::endl;
+
+    Point point;
+    std::cin >> point;
+    std::cout << point;
+
+    Super super; 
+    std::cin >> super;
+    std::cout << super << "\n"; 
+
 }
 
 
