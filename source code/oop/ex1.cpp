@@ -59,12 +59,12 @@ public:
 
     void realthisPrivate()
     {
-        std::cout << "realthis->x: " << this << " " << this->x << std::endl;
+        std::cout << "realthisPrivate->x: " << this << " " << this->x << std::endl;
     }
 
     void realthisProtected()
     {
-        std::cout << "realthis->x: " << this << " " << this->y << std::endl;
+        std::cout << "realthisProtected->x: " << this << " " << this->y << std::endl;
     }
 
     A* getThisA()
@@ -370,8 +370,9 @@ class STATIC
 private: 
     // neu dung dong nay thi ta khong can khai bao bien ben ngoai 
     // dong nay chi chay duoc trong cpp 17 tro len 
-    inline static int st = 1; 
     // static int st; 
+    inline static int st = 1; 
+    int a; 
 public: 
     void checkStatic() 
     {
@@ -385,6 +386,11 @@ public:
     {
         return &st; 
     }
+    int *getAddressnotStatic() 
+    {
+        return &a; 
+    }
+
 }; 
 /*
     cai nay la neu ta khong dung inline ma ta dung ben ngoai
@@ -537,9 +543,14 @@ int main()
     st2.checkStatic(); 
     std::cout << st1.getst() << std::endl; 
     std::cout << st2.getst() << std::endl; 
+    std::cout << "Address of memeber Static: " << "\n"; 
     std::cout << st1.getAddressStatic() << std::endl; 
-    std::cout << st2.getAddressStatic() << std::endl << "\n"; 
-    
+    std::cout << st2.getAddressStatic() << std::endl;
+    std::cout << "Address of member not Static: " << "\n"; 
+    std::cout << st1.getAddressnotStatic() << std::endl; 
+    std::cout << st2.getAddressnotStatic() << std::endl << "\n"; 
+     
+
 
 }
 
