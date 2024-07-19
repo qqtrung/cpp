@@ -401,6 +401,28 @@ public:
     int STATIC::st = 1; 
 */
 
+class AbstractClass 
+{
+public:
+    // pure virtual funtion 
+    virtual void abstractClass() = 0; 
+    /*
+        pure virtual funtion la 1 ham thuan ao tuc la lop con ke thua tu abstractclass nay bat buoc
+        phai cai dat pure virtual funtion nay thi moi khoi tao duoc class con  
+    */
+    virtual void Class() {} 
+}; 
+
+class Subclass : AbstractClass 
+{
+public:
+    Subclass(std::string name) 
+    {
+        std::cout << name << "\n\n"; 
+    }
+    void abstractClass() {} // vi subclass ke thua tu abstractclass len bat buoc phai co dong nay moi khoi tao duoc subclass 
+    void Class() {}  // dong nay co the co hoac khong co cung duoc 
+}; 
 
 
 int main()
@@ -549,6 +571,9 @@ int main()
     std::cout << "Address of member not Static: " << "\n"; 
     std::cout << st1.getAddressnotStatic() << std::endl; 
     std::cout << st2.getAddressnotStatic() << std::endl << "\n"; 
+
+    // su khac biet giua virtual funtion va pure virtual funtion 
+    Subclass subclass("pure virtual funtion"); 
      
 
 
