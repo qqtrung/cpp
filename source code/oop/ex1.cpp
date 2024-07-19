@@ -72,7 +72,10 @@ public:
         return this;
     }
 
-    virtual void write()
+    // the hien tinh da hinh cho nay neu khong co virtual thi khi cho den lop co so thi no se thuc thi ham o lop co so luon 
+    // ma khong ghi de len phuong thuc nay. Neu trong class con co phuong thuc write thi khi co virtual no se ghi de len 
+    // va thuc hien tinh da hinh o cho nay nhe day la 1 tinh rat hay trong con tro o tren cpp 
+    virtual void write() 
     {
 
     }
@@ -285,12 +288,14 @@ struct Point
     int r;
     int c;
 
-    /*friend std::istream& operator>>(std::istream &in, Point &point)
-    {
-        in >> point.r;
-        in >> point.c;
-        return in;
-    }*/
+    /*
+        friend std::istream& operator>>(std::istream &in, Point &point)
+        {
+            in >> point.r;
+            in >> point.c;
+            return in;
+        }
+    */
 
     friend std::istream& operator>> (std::istream &in, Point &point)
     {
@@ -311,18 +316,21 @@ struct Super
 {
     std::string name;
 
-    // ban chat la tra ve 1 con tro toi class istream de lay dau vao
-    // cua nguoi dung
+    /*
+        ban chat la tra ve 1 con tro toi class istream de lay dau vao
+        cua nguoi dung
 
-    // noi chung duoi day ta co the thay dung lop istream de lay dau
-    // vao cua nguoi dung nhu the nao
+        noi chung duoi day ta co the thay dung lop istream de lay dau
+        vao cua nguoi dung nhu the nao
 
-    // chung ta co the hieu don gian istream& la kieu tra ve
-    // operator la ten cua ham
-    // dau vao la cac thu tren
+        chung ta co the hieu don gian istream& la kieu tra ve
+        operator la ten cua ham
+        dau vao la cac thu tren
 
-    // ta thuong khong the thay doi format cua ham nhap va xuat
-    // ly do cac ham nay da duoc viet san roi
+        ta thuong khong the thay doi format cua ham nhap va xuat
+        ly do cac ham nay da duoc viet san roi
+    */
+    
 
     friend std::istream& operator>> (std::istream &in, Super &super)
     {
@@ -355,6 +363,38 @@ struct my_istream
         std::cout << this << "\n";
     }
 };
+
+
+class STATIC
+{
+private: 
+    // neu dung dong nay thi ta khong can khai bao bien ben ngoai 
+    // dong nay chi chay duoc trong cpp 17 tro len 
+    inline static int st = 1; 
+    // static int st; 
+public: 
+    void checkStatic() 
+    {
+        st++; 
+    }    
+    int getst() 
+    {
+        return st; 
+    }
+    int *getAddressStatic()
+    {
+        return &st; 
+    }
+}; 
+/*
+    cai nay la neu ta khong dung inline ma ta dung ben ngoai
+    nhung noi chung thi bay gio thuong se dung inline it ai 
+    con dung ben ngoai nua 
+*/
+/* 
+    int STATIC::st = 1; 
+*/
+
 
 
 int main()
@@ -450,27 +490,59 @@ int main()
     {
         std::cout << q[i] << " ";
     }
-    std::cout << std::endl;
+    std::cout << std::endl << "\n";
 
     Point point;
     std::cin >> point;
     std::cout << point;
+    std::cout << "\n";
 
     Super super;
     std::cin >> super;
     std::cout << super << "\n";
 
-    /* Qua vi du nay ta co the thay ban chat phep toan tu trong cpp*/
+    /* 
+        Qua vi du nay ta co the thay ban chat phep toan tu trong cpp
+    */
     my_istream mis;
     int fin;
     mis.operator+(fin);
     mis + fin;
     mis.operator<<(fin);
     mis << fin;
-    std::cout << mis.a << "\n";
-
+    std::cout << mis.a << "\n\n";
+    
+    /*
+        Ban chat cua bien static no se luu o 1 vung nho khi chung ta
+        tao 1 constructor moi thi no se khong khoi tao lai dieu do rat co ich 
+        boi le ham hay bien do no se duoc thuc thi o 1 vung nho rieng biet va khong
+        can phai khoi tao lai dieu nay giup cai thien bo nho va hieu suat cua 
+        chuong trinh chung ta 
+    */
+    
+    /*
+        noi tom lai ta thuong dung static cho bien khi bien do khong can thay 
+        doi hoac khong muon bien do khoi tao lai de giup cai thien space 
+        
+        ham static ta thuong dung khi ham do dung chung cho cac doi tuong 
+        co cung 1 phuong thuc giong nhau va cach hoat dong giong nhau 
+        
+        va ban chat cua bien static lien quan den vung nho khi thuc hien
+        chuong trinh 
+    */
+    
+    STATIC st1; 
+    st1.checkStatic(); 
+    STATIC st2; 
+    st2.checkStatic(); 
+    std::cout << st1.getst() << std::endl; 
+    std::cout << st2.getst() << std::endl; 
+    std::cout << st1.getAddressStatic() << std::endl; 
+    std::cout << st2.getAddressStatic() << std::endl << "\n"; 
+    
 
 }
 
 
 
+    
