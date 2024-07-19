@@ -37,7 +37,7 @@ int main()
     }
 
     if(p == false) {
-        cout << "Vi tri xoa " << idx + 1 << "\n"; 
+        cout << "Vi tri xoa la: " << idx + 1 << "\n"; 
     } else {
         cout << "Khong can xoa" << "\n"; 
     }
