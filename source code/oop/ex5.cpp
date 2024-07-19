@@ -58,10 +58,9 @@ public:
     {
         for(int i = 0; i < list.size; i++)
         {
-            out << list.arr[i] << " "; 
+            out << list[i] << " "; 
         }
         out << "\n"; 
-
         return out; 
     }
 
@@ -84,11 +83,6 @@ public:
             arr[i] = other.arr[i]; 
         }
     }
-
-    int operator[] (int n) 
-    {
-        return arr[size - 1]; 
-    } 
 
     void generate(int upper_bound)
     {
@@ -117,6 +111,11 @@ public:
                 }
             }
         }   
+    }
+
+    int operator[] (int n) const 
+    {
+        return arr[n]; 
     }
 
     int count() 
