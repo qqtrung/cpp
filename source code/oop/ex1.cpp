@@ -354,13 +354,14 @@ struct my_istream
 { 
     int a;
     
+    // con rat nhieu operator nhung de vai cai cho vui thoi 
     void operator+(int x) {
-        std::cout << this << "\n";
+        std::cout << "operator+ " << this << "\n";
         a = 8484;
     }
 
-    void operator<<(int x) {
-        std::cout << this << "\n";
+    void operator[](int x) {
+        std::cout << "operator[] " << this << "\n";
     }
 };
 
@@ -536,8 +537,8 @@ int main()
     int fin;
     mis.operator+(fin);
     mis + fin;
-    mis.operator<<(fin);
-    mis << fin;
+    mis.operator[](fin);
+    mis[fin];
     std::cout << mis.a << "\n\n";
     
     /*
