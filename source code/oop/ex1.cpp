@@ -77,7 +77,7 @@ public:
     // va thuc hien tinh da hinh o cho nay nhe day la 1 tinh rat hay trong con tro o tren cpp 
     virtual void write() 
     {
-
+        std::cout << "polymorphism" << "\n";  
     }
 
 };
@@ -288,15 +288,6 @@ struct Point
     int r;
     int c;
 
-    /*
-        friend std::istream& operator>>(std::istream &in, Point &point)
-        {
-            in >> point.r;
-            in >> point.c;
-            return in;
-        }
-    */
-
     friend std::istream& operator>> (std::istream &in, Point &point)
     {
         in >> point.r;
@@ -341,7 +332,6 @@ struct Super
         return in;
     }
 
-    // cung giong nhu tren thoi
     friend std::ostream& operator<< (std::ostream &out, Super &super)
     {
         std::cout << "Sieu nhan cua ban ten la: ";
