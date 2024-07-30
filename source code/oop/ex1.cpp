@@ -71,10 +71,13 @@ public:
     {
         return this;
     }
+    
+    /*
+        the hien tinh da hinh cho nay neu khong co virtual thi khi cho den lop co so thi no se thuc thi ham o lop co so luon 
+        ma khong ghi de len phuong thuc nay. Neu trong class con co phuong thuc write thi khi co virtual no se ghi de len 
+        va thuc hien tinh da hinh o cho nay nhe day la 1 tinh rat hay trong con tro o tren cpp 
+    */
 
-    // the hien tinh da hinh cho nay neu khong co virtual thi khi cho den lop co so thi no se thuc thi ham o lop co so luon 
-    // ma khong ghi de len phuong thuc nay. Neu trong class con co phuong thuc write thi khi co virtual no se ghi de len 
-    // va thuc hien tinh da hinh o cho nay nhe day la 1 tinh rat hay trong con tro o tren cpp 
     virtual void write() 
     {
         std::cout << "polymorphism" << "\n";  
@@ -344,7 +347,10 @@ struct my_istream
 { 
     int a;
     
-    // con rat nhieu operator nhung de vai cai cho vui thoi 
+    /*
+        con rat nhieu operator nhung de vai cai cho vui thoi 
+    */
+
     void operator+(int x) {
         std::cout << "operator+ " << this << "\n";
         a = 8484;
@@ -359,9 +365,11 @@ struct my_istream
 class STATIC
 {
 private: 
-    // neu dung dong nay thi ta khong can khai bao bien ben ngoai 
-    // dong nay chi chay duoc trong cpp 17 tro len 
-    // static int st; 
+    /*
+        neu dung dong nay thi ta khong can khai bao bien ben ngoai 
+        dong nay chi chay duoc trong cpp 17 tro len 
+        static int st; 
+    */
     inline static int st = 1; 
     int a; 
 public: 
@@ -395,7 +403,9 @@ public:
 class AbstractClass 
 {
 public:
-    // pure virtual funtion 
+    /*
+        pure virtual funtion 
+    */ 
     virtual void abstractClass() = 0; 
     /*
         pure virtual funtion la 1 ham thuan ao tuc la lop con ke thua tu abstractclass nay bat buoc
@@ -411,8 +421,12 @@ public:
     {
         std::cout << name << "\n\n"; 
     }
-    void abstractClass() {} // vi subclass ke thua tu abstractclass len bat buoc phai co dong nay moi khoi tao duoc subclass 
-    void Class() {}  // dong nay co the co hoac khong co cung duoc 
+     
+    /* vi subclass ke thua tu abstractclass len bat buoc phai co dong nay moi khoi tao duoc subclass */
+    void abstractClass() {}
+     
+    /* dong nay co the co hoac khong co cung duoc */
+    void Class() {} 
 }; 
 
 
@@ -563,7 +577,9 @@ int main()
     std::cout << st1.getAddressnotStatic() << std::endl; 
     std::cout << st2.getAddressnotStatic() << std::endl << "\n"; 
 
-    // su khac biet giua virtual funtion va pure virtual funtion 
+    /* 
+        su khac biet giua virtual funtion va pure virtual funtion 
+    */
     Subclass subclass("pure virtual funtion"); 
      
 
