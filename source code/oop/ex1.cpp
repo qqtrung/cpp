@@ -85,7 +85,7 @@ public:
 
 };
 
-class B : public A   // no private
+class B : public A   
 {
 private:
     std::string x = "class B";
@@ -121,7 +121,7 @@ public:
 
 };
 
-class D : public A   // no private
+class D : public A   
 {
 public:
     std::string z = "public string D";
@@ -325,11 +325,9 @@ struct Super
         ly do cac ham nay da duoc viet san roi
     */
     
-
     friend std::istream& operator>> (std::istream &in, Super &super)
     {
         std::cout << "Nhap sieu nhan: ";
-        // in >> super.name;
         in.ignore();
         getline(in, super.name);
         return in;
@@ -381,7 +379,7 @@ public:
     {
         return st; 
     }
-    int *getAddressStatic()
+    static int *getAddressStatic()
     {
         return &st; 
     }
