@@ -10,6 +10,5 @@ int main()
     assert(x == 7); 
     cout << "login successfully"; 
     
-    
     return 0;
 }
