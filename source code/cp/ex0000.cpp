@@ -5,7 +5,7 @@ typedef long long ll;
 void solve() 
 {
     // solve
-    
+
 }
 
 int main() 
@@ -20,12 +20,10 @@ int main()
     ofstream out("output.txt"); 
     cout.rdbuf(out.rdbuf()); 
 
-    // Your code
     int st;
     cin >> st; 
     while(st--)
         solve(); 
-    // end 
 
     auto stop = chrono::high_resolution_clock::now(); 
     auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start); 
