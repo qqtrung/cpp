@@ -7,8 +7,11 @@ int main()
     
     int x = 8; 
     x = 7; 
-    assert(x == 7); 
-    cout << "login successfully"; 
+    if(x == 7) {
+        assert(false); 
+    } else {
+        cout << "login successfully"; 
+    }
     
     return 0;
 }
