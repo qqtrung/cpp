@@ -1,14 +1,16 @@
+// #include <bits/stdc++.h>
 #include <iostream>
 #include <map>
 #include <vector>
 #include <cstdint>
 #include <algorithm>
 
+#define sz(v) ((int) v.size())
+#define all(v) (v).begin(), (v).end() 
+
 using namespace std; 
 using int64 = int64_t; 
 using ii = pair<int, int>; 
-#define sz(v) ((int) v.size())
-#define all(v) (v).begin(), (v).end() 
 
 
 size_t DataType(int64 largeNumber) {
@@ -22,15 +24,15 @@ int main() {
     cout.tie(nullptr); 
 
     int64 largeNumber = 9223372036854775807; 
-    cout << DataType(largeNumber) << "\n"; 
-    
+
     vector<int> a = {4, 2, 3, 4, 1, 4}; 
-    a.emplace_back(10); // faster push_back 
+    a.emplace_back(10);
+    a.emplace_back(11);  
 
     sort(all(a)); 
-    // for (int i = 0; i < sz(a); i++) {
-    //     cout << a[i] << " "; 
-    // }
+
+    vector<int> v = {0, 3, 4, 8, 9, 10}; 
+    int idx = lower_bound(v.begin(), v.end(), 9) - v.begin(); 
 
     return 0;
 }
